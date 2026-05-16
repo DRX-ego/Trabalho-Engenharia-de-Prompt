@@ -1,0 +1,37 @@
+{
+  "entities": {
+    "preset": {
+      "title": "Design Preset",
+      "description": "A saved design configuration",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "Owner of the preset" },
+        "name": { "type": "string", "description": "Name of the preset" },
+        "config": { "type": "object", "description": "Design parameters" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "name", "config"]
+    },
+    "history": {
+      "title": "Design History",
+      "description": "Historical design changes",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "config": { "type": "object" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "config", "timestamp"]
+    }
+  },
+  "firestore": {
+    "/presets/{presetId}": {
+      "schema": "preset",
+      "description": "Collection of saved design presets"
+    },
+    "/history/{historyId}": {
+      "schema": "history",
+      "description": "Collection of design history entries"
+    }
+  }
+}
